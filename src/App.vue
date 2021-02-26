@@ -25,7 +25,7 @@
           <button id="btn-search" class="button is-dark is-small" type="submit" @click="searchId">procurar</button>
         </div>
         <section id="card-container">
-          <div class="card-box" v-for="user in users" v-bind:key="user.title">
+          <div class="card-box" v-for="user in users" v-bind:key="user.post">
             <div class="card" >
             <div class="card-header" >
               <p>{{user.title}}</p>
@@ -77,14 +77,13 @@ export default {
           
       axios.get('https://jsonplaceholder.typicode.com/posts').then(resp => {
       //this.users = resp.data;
-      this.users = resp.data;
+      this.users = resp.data
       for( let user of this.users){
-        //console.log(user.id)
-        if( selected > user.id){
-        console.log('igual')
-      }else{
-        console.log('diferente')
-      }
+        console.log(user.userId)
+          if(user.id == selected){
+            //this.users = user.userId
+            user.userId = this.users;
+          }
       }
     })
       
