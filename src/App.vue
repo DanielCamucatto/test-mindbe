@@ -65,30 +65,24 @@ export default {
     }
   },
   created(){
-    axios.get('https://jsonplaceholder.typicode.com/posts').then(resp => {
+    axios.get(`https://jsonplaceholder.typicode.com/users/${this.selected}`).then(resp => {
       //this.users = resp.data;
       this.ids = resp.data
+    }).catch(error =>{
+      console.log(error)
     })
   },
   methods:{
     searchId(){
-        const selected = document.getElementById('userId').value;
+      const selected = document.getElementById('userId').value;
           console.log(selected);
           
-      axios.get('https://jsonplaceholder.typicode.com/posts').then(resp => {
-      //this.users = resp.data;
-      this.users = resp.data
-      for( let user of this.users){
-        console.log(user.userId)
-          if(user.id == selected){
-            //this.users = user.userId
-            user.userId = this.users;
-          }
-      }
-    })
-      
-              
-    }  
+      axios.get(`https://jsonplaceholder.typicode.com/users/${this.selected}/posts`).then((resp) => {
+          console.log('resp ', resp);
+          console.log('resp.data ', resp.data)
+            this.users = resp.data;
+     }).catch(error => console.log(error));
+    }
   }
 } 
 </script>
